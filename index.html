@@ -943,7 +943,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-4 flex justify-center justify-between max-w-sm mx-auto text-white font-bold">
+                    <div id="navigasiWrapper" class="mt-4 flex justify-between max-w-sm mx-auto text-white font-bold">
                         <button type="button" id="btnSebelumnya"
                             class="bg-gray-400 px-5 py-2 rounded-lg">Sebelumnya</button>
                         <button type="button" id="btnSelanjutnya"
@@ -1123,7 +1123,18 @@
         }
 
         function updateTombolNavigasi() {
-            btnSebelumnya.style.display = halamanSekarang === 1 ? 'none' : 'inline-block';
+            const wrapper = document.getElementById('navigasiWrapper');
+
+            if (halamanSekarang === 1) {
+                btnSebelumnya.style.display = 'none';
+                wrapper.classList.remove('justify-between');
+                wrapper.classList.add('justify-end'); // hanya tombol kanan
+            } else {
+                btnSebelumnya.style.display = 'inline-block';
+                wrapper.classList.remove('justify-end');
+                wrapper.classList.add('justify-between'); // dua tombol
+            }
+
             btnSelanjutnya.innerText = halamanSekarang === totalHalaman ? 'Kirim' : 'Selanjutnya';
         }
 
